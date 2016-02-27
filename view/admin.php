@@ -6,6 +6,7 @@
 				<th>Select Filter</th>
 				<td>
 					<select id="wordpress-filters" name="wordpress-filters">
+					<option></option>
 					<?php
 						global $wp_filter;
 						foreach( $wp_filter as $filter_key => $hooked_values ){
@@ -61,7 +62,9 @@
 </div>
 <script type="text/javascript">
 	jQuery(function($){
-		$('#wordpress-filters').select2();
+		$('#wordpress-filters').select2({
+			 placeholder: "Select Filter or Hook",
+  		});
 		$('#wordpress-filters').on('change', function(){
 			console.log( $(this).val() );
 		});
