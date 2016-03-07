@@ -39,7 +39,7 @@
 		</tr>
 		<?php
 			$count = 1;
-			$hooked_functions = $wp_filter['init'];
+			$hooked_functions = $wp_filter[$function_name];
 			foreach($hooked_functions as $priority => $hooked_function){
 				foreach ($hooked_function as $function_name => $function_variables) {
 				?>
