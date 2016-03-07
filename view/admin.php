@@ -29,7 +29,13 @@
 	 if( filter_input(INPUT_POST, 'wordpress-filters') ):
 	 	$function_name = filter_input(INPUT_POST, 'wordpress-filters');
 	?>
-		<table class="wp-list-table widefat striped">
+
+		<table id="hacker-list" class="wp-list-table widefat striped">
+		<tr>
+			<td colspan="5">
+				<input type="text" class="search" placeholder="filter resutls">
+			</td>
+		</tr>
 		<tr>
 			<th>SN#</td>
 			<th>Function Name</th>
@@ -43,9 +49,9 @@
 			foreach($hooked_functions as $priority => $hooked_function){
 				foreach ($hooked_function as $function_name => $function_variables) {
 				?>
-				<tr>
+				<tr class="list">
 					<td><?php echo $count; ?></td>
-					<td><?php echo $function_name; ?></td>
+					<td class="name"><?php echo $function_name; ?></td>
 					<td><?php echo $priority; ?></td>
 					<td><?php echo $function_variables['accepted_args']; ?></td>
 					<td><input type="button" class="button" value="See Details"></td>
@@ -68,5 +74,11 @@
 		$('#wordpress-filters').on('change', function(){
 			console.log( $(this).val() );
 		});
+		if( $('#hacker-list').length != undefined && $('#hacker-list').length !='' ){
+			console.log('digthis');
+			var options = {valueNames: [ 'name' ] };
+			var hackerList = new List('hacker-list', options);
+		}
+
 	})
 </script>

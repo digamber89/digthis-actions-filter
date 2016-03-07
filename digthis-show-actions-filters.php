@@ -62,9 +62,18 @@ class digthisShowFilters{
 				array('jquery'),
 				false,
 				true );
+
+		wp_register_script(
+				'list',
+				plugins_url( 'assets/js/list.min.js', DIGTHIS_PLUGIN_FILE_PATH ),
+				array('jquery'),
+				false,
+				true );
+
 		if( $this->menu_page === $screen->id ) {
 			wp_enqueue_style(  'select2' );
 			wp_enqueue_script( 'select2' );
+			wp_enqueue_script( 'list' );
 		}
 	}
 
