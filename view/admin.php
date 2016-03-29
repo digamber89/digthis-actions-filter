@@ -40,7 +40,6 @@
 			<th>SN#</td>
 			<th>Function Name</th>
 			<th>Priority</th>
-			<th>Function Details</th>
 			<th>Arguments Accepted</th>
 		</tr>
 		<?php
@@ -54,7 +53,6 @@
 					<td class="name"><?php echo $function_name; ?></td>
 					<td><?php echo $priority; ?></td>
 					<td><?php echo $function_variables['accepted_args']; ?></td>
-					<td><input type="button" class="button" value="See Details"></td>
 				</tr>
 				<?php
 				$count++;
