@@ -62,16 +62,33 @@
 		?>
 		</table>
 <script type="text/javascript">
+
+
+
 jQuery(function($){
+	$('#wordpress-filters').select2({
+		placeholder: "Select Filter or Hook",
+	});
+
+	$.magnificPopup.instance._onFocusIn = function(e) {
+			// Do nothing if target element is select2 input
+			if( $(e.target).hasClass('select2-search__field') ) {
+				return true;
+			} 
+			// Else call parent method
+			$.magnificPopup.proto._onFocusIn.call(this,e);
+	};
+
 	$.magnificPopup.open({
 	  items: {
 	    src: '#test-popup'
 	  },
 	  type: 'inline'
 	});
+	
 	if( $('#hacker-list').length != undefined && $('#hacker-list').length !='' ){
-	var options = { valueNames: [ 'name' ] };
-	var hackerList = new List('hacker-list', options);
+		var options = { valueNames: [ 'name' ] };
+		var hackerList = new List('hacker-list', options);
 	}
 })
 </script>

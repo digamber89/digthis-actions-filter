@@ -25,6 +25,21 @@ class digthisShowFilters{
 	</div>
 		<script type="text/javascript">
 		jQuery(function($){
+
+			$('#wordpress-filters').select2({
+				placeholder: "Select Filter or Hook",
+			});
+
+			$.magnificPopup.instance._onFocusIn = function(e) {
+			// Do nothing if target element is select2 input
+				if( $(e.target).hasClass('select2-search__field') ) {
+				return true;
+			} 
+			
+			// Else call parent method
+			$.magnificPopup.proto._onFocusIn.call(this,e);
+			};
+			
 			$('#wp-admin-bar-digthis-show-filter > a').magnificPopup({
 				type:'inline',
 				midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.

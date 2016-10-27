@@ -105,7 +105,6 @@
 			console.log( $(this).val() );
 		});
 		if( $('#hacker-list').length != undefined && $('#hacker-list').length !='' ){
-			console.log('digthis');
 			var options = {valueNames: [ 'name' ] };
 			var hackerList = new List('hacker-list', options);
 		}
