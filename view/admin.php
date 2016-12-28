@@ -31,20 +31,19 @@
 	?>
 
 		<table id="hacker-list" class="wp-list-table widefat striped">
-		<tr>
-			<td colspan="5">
-				<input type="text" class="search" placeholder="filter resutls">
-			</td>
-		</tr>
-		<tr>
-			<th>SN#</td>
-			<th>Function Name</th>
-			<th>Priority</th>
-			<th>Arguments Accepted</th>
-		</tr>
+			<tr>
+				<td colspan="5">
+					<input type="text" class="search" placeholder="filter resutls">
+				</td>
+			</tr>
+			<tr>
+				<th>SN#</td>
+				<th>Function Name</th>
+				<th>Priority</th>
+				<th>Arguments Accepted</th>
+			</tr>
 		<?php
 			$count = 1;
-			/*$hooked_functions = $wp_filter[$function_name];*/
 				$action = $wp_filter[$function_name];
 			foreach ( $action as $priority => $callbacks ) {
 				foreach ( $callbacks as $callback ) {
@@ -52,13 +51,6 @@
 					if ( isset( $callback['component'] ) ) {
 						$components[$callback['component']->name] = $callback['component']->name;
 					}
-			/*		
-					echo $priority.'<br />';
-					echo $callback['name'].'<br />';
-					echo $callback['file'].'<br />';
-					echo $callback['line'].'<br />';
-					echo '<hr>';*/
-
 			?>
 				<tr class="list">
 					<td><?php echo $count; ?></td>
@@ -73,24 +65,8 @@
 				</tr>
 			<?php
 				$count++;
-					#print_pre($callback);	
 				}
 			}
-			
-			/*foreach($hooked_functions as $priority => $hooked_function){
-				foreach ($hooked_function as $function_name => $function_variables) {
-				?>
-				<tr class="list">
-					<td><?php echo $count; ?></td>
-					<td class="name"><?php echo $function_name; ?></td>
-					<td><?php echo $priority; ?></td>
-					<td><?php echo $function_variables['accepted_args']; ?></td>
-				</tr>
-				<?php
-				$count++;
-				}
-				
-			}*/
 		?>
 		</table>
 	<?php endif; ?>

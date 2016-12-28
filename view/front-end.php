@@ -30,34 +30,43 @@
 	 	$function_name = filter_input(INPUT_POST, 'wordpress-filters');
 	?>
 
+
 		<table id="hacker-list" class="wp-list-table widefat striped">
-	<!-- 	<tr>
-			<td colspan="5">
-				<input type="text" class="search" placeholder="filter resutls">
-			</td>
-		</tr> -->
-		<tr>
-			<th>SN#</td>
-			<th>Function Name</th>
-			<th>Priority</th>
-			<th>Arguments Accepted</th>
-		</tr>
+			<tr>
+				<td colspan="5">
+					<!-- <input type="text" class="search" placeholder="filter resutls"> -->
+				</td>
+			</tr>
+			<tr>
+				<th>SN#</td>
+				<th>Function Name</th>
+				<th>Priority</th>
+				<th>Arguments Accepted</th>
+			</tr>
 		<?php
 			$count = 1;
-			$hooked_functions = $wp_filter[$function_name];
-			foreach($hooked_functions as $priority => $hooked_function){
-				foreach ($hooked_function as $function_name => $function_variables) {
-				?>
+				$action = $wp_filter[$function_name];
+			foreach ( $action as $priority => $callbacks ) {
+				foreach ( $callbacks as $callback ) {
+					$callback = QM_Util::populate_callback( $callback );
+					if ( isset( $callback['component'] ) ) {
+						$components[$callback['component']->name] = $callback['component']->name;
+					}
+			?>
 				<tr class="list">
 					<td><?php echo $count; ?></td>
-					<td class="name"><?php echo $function_name; ?></td>
+					<td class="name"><?php echo $callback['name']; ?></td>
 					<td><?php echo $priority; ?></td>
-					<td><?php echo $function_variables['accepted_args']; ?></td>
+					<td>
+						Accepted Arguments : <?php echo $callback['accepted_args']; ?><br />
+						File: <?php echo $callback['file']; ?><br />
+						Line No: <?php echo $callback['line']; ?><br />
+
+					</td>
 				</tr>
-				<?php
+			<?php
 				$count++;
 				}
-				
 			}
 		?>
 		</table>
